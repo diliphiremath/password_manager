@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Secrets{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('manager.insert_record') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for secret in secrets %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ secret["website"] }}</h1>
+          <h2>{{ secret["username"] }}</h2>
+          <h2>{{ secret["password"] }}</h2>
+      </header>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
