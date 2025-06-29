@@ -16,6 +16,10 @@
           <h2>{{ secret["username"] }}</h2>
           <h2>{{ secret["password"] }}</h2>
       </header>
+      <a class="action" href="{{ url_for('manager.update_record', id=secret["id"]) }}">Update</a>
+      <form action="{{ url_for('manager.delete_record', id=secret['id']) }}" method="post">
+        <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+        </form>
     </article>
     {% if not loop.last %}
       <hr>

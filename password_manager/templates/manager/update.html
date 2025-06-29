@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ secret['website'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="website">Website</label>
+    <input name="website" id="website"
+      value="{{ request.form['website'] or secret['website'] }}" required>
+      <label for="username">Username</label>
+    <input name="username" id="username"
+      value="{{ request.form['username'] or secret['username'] }}" required>
+      <label for="password">Password</label>
+    <input name="password" id="password"
+      value="{{ request.form['password'] or secret['password'] }}" required>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <form action="{{ url_for('manager.delete_record', id=secret['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}
